@@ -1,0 +1,14 @@
+<h3 mat-dialog-title>Actualizati departament</h3>
+
+<form>
+
+  <label>Actualizati numele departamentului: </label>
+  <input type="text" [(ngModel)]="department.departmentName" [ngModelOptions]="{standalone: true}">
+
+  <br>
+  <br>
+
+
+  <input type="submit" value="Actualizati" (click)="updateDepartmentButton()" class="normalButton">
+
+</form>

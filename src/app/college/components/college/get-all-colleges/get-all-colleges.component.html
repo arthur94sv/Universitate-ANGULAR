@@ -1,0 +1,45 @@
+<p mat-dialog-title>Afisati toate facultatile</p>
+
+<button (click)="getAllColleges()" class="normalButton">Afisare facultati</button>
+<br>
+<br>
+<div *ngIf="displayListOfColleges === true">
+
+  <button (click)="close()" class="closeButton">X</button>
+
+  <table>
+    <tr>
+      <th>ID facultate</th>
+      <th>Numele facultatii</th>
+      <th>Strada</th>
+      <th>Nr.</th>
+      <th>Telefon</th>
+      <th colspan="2">Operatii</th>
+      <th>Departament</th>
+      <th>Profesori</th>
+    </tr>
+    <tr *ngFor="let collegeIter of listOfColleges">
+      <td>{{collegeIter.id}}</td>
+      <td><strong><em>{{collegeIter.nume}}</em></strong></td>
+      <td>{{collegeIter.strada}}</td>
+      <td>{{collegeIter.nr}}</td>
+      <td>{{collegeIter.telefon}}</td>
+      <td>
+        <button (click)="openUpdateCollegeDialog(collegeIter)" class="normalButton">Actualizati</button>
+      </td>
+      <td>
+        <button (click)="openDeleteCollegeDialog(collegeIter)" class="deleteButton">Stergeti</button>
+      </td>
+      <td>
+        <button (click)="openRootDepartmentsDialog(collegeIter)" class="dependencyButton">Departament</button>
+      </td>
+      <td>
+        <button (click)="openRootProfessorsDialog(collegeIter)" class="dependencyButton">Profesori</button>
+      </td>
+    </tr>
+  </table>
+
+</div>
+
+
+

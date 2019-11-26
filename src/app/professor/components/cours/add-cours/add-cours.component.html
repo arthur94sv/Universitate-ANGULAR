@@ -1,0 +1,13 @@
+<h3 mat-dialog-title>Adaugati curs</h3>
+
+
+<label>Introduceti numele cursului: </label>
+<input type="text" [(ngModel)]="curs.name">
+<div class="errorMessage" *ngIf="cursError.name != null">
+  {{cursError.name}}
+</div>
+
+<br>
+<br>
+
+<button (click)="addCourse()" class="normalButton">Adaugati</button>

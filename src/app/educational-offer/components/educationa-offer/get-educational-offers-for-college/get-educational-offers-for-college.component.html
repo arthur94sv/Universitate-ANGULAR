@@ -1,0 +1,35 @@
+<label mat-dialog-title>Selectati facultatea : </label>
+<select [(ngModel)]="college" [ngModelOptions]="{standalone: true}">
+  <option *ngFor=" let collegeIt of listOfColleges" [ngValue]="collegeIt">{{collegeIt.nume}}</option>
+</select>
+
+<br>
+<br>
+
+<button (click)="getEducOffers()" class="normalButton">Afisati programele de studii</button>
+
+<div *ngIf="displayEducOffer === true">
+
+  <button (click)="closeDisplayListEducOffer()" class="closeButton">X</button>
+
+  <br>
+
+  <table>
+    <tr>
+      <th>Numele programului de studiu</th>
+      <th>Ciclul de invatamant</th>
+      <th>Operatie</th>
+      <th>Promotie</th>
+    </tr>
+    <tr *ngFor="let educOffer of listOfEducationalOffers">
+      <td>{{educOffer.name}}</td>
+      <td>{{educOffer.educationLevel}}</td>
+      <td>
+        <button (click)="openUpdateEducOfferDialog(educOffer)" class="normalButton">Actualizati</button>
+      </td>
+      <td>
+        <button (click)="openRootPromotionDialog(educOffer)" class="dependencyButton">Promotie</button>
+      </td>
+    </tr>
+  </table>
+</div>

@@ -1,0 +1,46 @@
+<form>
+  <label>Introduceti numele studentului: </label>
+  <input type="text" [(ngModel)]="student.nume" [ngModelOptions]="{standalone: true}">
+  <div class="errorMessage" *ngIf="studentError.nume != null">
+    {{studentError.nume}}
+  </div>
+
+  <br>
+  <br>
+
+  <label>Introduceti prenumele studentului: </label>
+  <input type="text" [(ngModel)]="student.prenume" [ngModelOptions]="{standalone: true}">
+  <div class="errorMessage" *ngIf="studentError.prenume != null">
+    {{studentError.prenume}}
+  </div>
+
+  <br>
+  <br>
+
+  <label>Introduceti adresa de email a studentului: </label>
+  <input type="text" [(ngModel)]="student.email" [ngModelOptions]="{standalone: true}">
+  <div class="errorMessage" *ngIf="studentError.email != null">
+    {{studentError.email}}
+  </div>
+
+  <br>
+  <br>
+
+  <label>Alegeti repartitia : </label>
+  <select [(ngModel)]="student.repartition" [ngModelOptions]="{standalone: true}">
+    <option *ngFor="let repartitionIt of repartitionList"
+            [ngValue]="repartitionIt">{{repartitionIt.repartition}}</option>
+  </select>
+  <div class="errorMessage" *ngIf="studentError.repartition != null">
+    {{studentError.repartition}}
+  </div>
+
+  <br>
+  <br>
+
+  <button (click)="addStudentToPromotion()" class="normalButton">Adaugati</button>
+  <div class="errorMessage">
+    {{error}}
+  </div>
+
+</form>

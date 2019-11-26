@@ -1,0 +1,75 @@
+<div class="searchingContainer">
+  <h3 mat-dialog-title>Cautati student</h3>
+
+  <em><p>Cauteara se poate face in 2 feluri:</p>
+    <ul>
+      <li>Dupa numele studentului</li>
+      <li>Dupa numele si prenumele studentului</li>
+    </ul>
+  </em>
+
+  <br>
+
+  <label>Introduceti numele: </label>
+  <input [(ngModel)]="nume">
+
+  <br>
+  <br>
+
+  <label>Introduceti prenumele: </label>
+  <input [(ngModel)]="prenume">
+
+  <br>
+  <br>
+
+  <button (click)="searchStudents()" class="normalButton">Cautati</button>
+
+
+  <div *ngIf="displayListOfStudents === true">
+
+    <br>
+
+
+    <button (click)="close()" class="closeButton">X</button>
+
+    <br>
+    <br>
+
+    <table>
+      <tr>
+        <th>ID student</th>
+        <th>Nume</th>
+        <th>Prenume</th>
+        <th>Email</th>
+        <th>Facultate</th>
+        <th>Programul de studiu</th>
+        <th>Ciclul de studiu</th>
+        <th>Repartitie</th>
+        <th>Anul de inceput</th>
+        <th>Anul de sfarsit</th>
+        <th colspan="2">Operatii</th>
+
+      </tr>
+      <tr *ngFor="let student of listOfStudents">
+        <td>{{student.id}}</td>
+        <td><strong><em>{{student.nume}}</em></strong></td>
+        <td><em>{{student.prenume}}</em></td>
+        <td>{{student.email}}</td>
+
+        <td *ngFor="let promotion of student.listOfPromotions">{{promotion.college}}</td>
+        <td *ngFor="let promotion of student.listOfPromotions">{{promotion.educationalOffer}}</td>
+        <td *ngFor="let promotion of student.listOfPromotions">{{promotion.educationalLevel}}</td>
+        <td *ngFor="let promotion of student.listOfPromotions">{{promotion.repartition}}</td>
+        <td *ngFor="let promotion of student.listOfPromotions">{{promotion.startYear}}</td>
+        <td *ngFor="let promotion of student.listOfPromotions">{{promotion.endYear}}</td>
+
+        <td>
+          <button (click)="openDeleteStudentDialog(student)" class="deleteButton">Stergeti</button>
+        </td>
+        <td>
+          <button (click)="openUpdateStudentDialog(student)" class="normalButton">Actualizati</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

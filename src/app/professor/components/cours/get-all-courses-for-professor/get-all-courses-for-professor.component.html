@@ -1,0 +1,28 @@
+<button (click)="getCourses()" class="normalButton">Afisati cursuri</button>
+
+<br>
+<br>
+
+<div *ngIf="displayListOfCourses === true">
+
+  <button (click)="close()" class="closeButton">X</button>
+
+  <br>
+  <br>
+
+  <table>
+    <tr>
+      <th>Numele cursului</th>
+      <th colspan="2">Operatii</th>
+    </tr>
+    <tr *ngFor="let curs of listOfCourses">
+      <td>{{curs.name}}</td>
+      <td>
+        <button (click)="openUpdateCourseDialog(curs)" class="normalButton">Actualizati</button>
+      </td>
+      <td>
+        <button (click)="openDeleteCourseDialog(curs)" class="deleteButton">Stergeti</button>
+      </td>
+    </tr>
+  </table>
+</div>

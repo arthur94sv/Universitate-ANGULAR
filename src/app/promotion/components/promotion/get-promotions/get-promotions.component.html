@@ -1,0 +1,74 @@
+<div class="searchingContainer">
+  <p mat-dialog-title>Cautati promotie</p>
+
+
+  <em><p>Cauteara se poate face in 3 feluri:</p>
+    <ul>
+      <li>Dupa facultate</li>
+      <li>Dupa facultate si ciclul de studiu (licenta, masterat, doctorat)</li>
+      <li>Dupa facultate, ciclul de studiu si anul de sfarsit</li>
+    </ul>
+  </em>
+
+  <br>
+
+  <label>Selectati facultatea : </label>
+  <select [(ngModel)]="college" [ngModelOptions]="{standalone: true}">
+    <option *ngFor=" let collegeIt of listOfColleges" [ngValue]="collegeIt">{{collegeIt.nume}}</option>
+  </select>
+
+  <br>
+  <br>
+
+  <label> Selectati ciclul de studii: </label>
+  <select [(ngModel)]="educationLevel" [ngModelOptions]="{standalone: true}">
+    <option *ngFor="let education of educationLevelList" [ngValue]="education">{{education.educationLevel}}</option>
+  </select>
+
+  <br>
+  <br>
+
+  <label>Introduceti anul de sfarsit: </label>
+  <input type="number" [(ngModel)]="endYear">
+
+
+  <br>
+  <br>
+
+  <button (click)="getAllPromotions()" class="normalButton">Cautati</button>
+
+  <br>
+  <br>
+
+  <div *ngIf="displayListOfPromotions === true">
+    <button (click)="closeDisplayListOfPromotions()" class="closeButton">X</button>
+    <table>
+      <tr>
+        <th>Numele programului de studiu</th>
+        <th>Nivelul de invatamant</th>
+        <th>An inceput</th>
+        <th>An sfarsit</th>
+        <th>Nr. locuri buget</th>
+        <th>Nr. locuri taxa</th>
+        <th>Operatie</th>
+        <th>Studenti</th>
+      </tr>
+      <tr *ngFor="let promotion of listOfPromotions">
+        <td>{{promotion.educationalOffer}}</td>
+        <td>{{promotion.educationalLevel}}</td>
+        <td>{{promotion.startYear}}</td>
+        <td>{{promotion.endYear}}</td>
+        <td>{{promotion.nrLocuriBuget}}</td>
+        <td>{{promotion.nrLocuriTaxa}}</td>
+        <td>
+          <button (click)="updatePromotionDialog(promotion)" class="normalButton">Actualizati</button>
+        </td>
+        <td>
+          <button (click)="openRootStudentDialog(promotion)" class="dependencyButton">Studenti</button>
+        </td>
+      </tr>
+    </table>
+
+
+  </div>
+</div>

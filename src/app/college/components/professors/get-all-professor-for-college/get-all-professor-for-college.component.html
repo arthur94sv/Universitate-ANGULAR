@@ -1,0 +1,35 @@
+<button (click)="getProfessors()" class="normalButton">Afisati profesori</button>
+
+<br>
+<br>
+
+<div *ngIf="displayListOfProfessors === true">
+
+  <button (click)="close()" class="closeButton">X</button>
+
+  <table>
+    <tr>
+      <th>ID profesor</th>
+      <th>Numele</th>
+      <th>Prenume</th>
+      <th>Email</th>
+      <th>Grad</th>
+      <th>Departament</th>
+      <th>Operatie</th>
+    </tr>
+    <tr *ngFor="let professor of listOfProfessors">
+      <td>{{professor.id}}</td>
+      <td><strong><em>{{professor.nume}}</em></strong></td>
+      <td><em>{{professor.prenume}}</em></td>
+      <td>{{professor.email}}</td>
+      <td><em>{{professor.grad}}</em></td>
+      <td><em>{{professor.department}}</em></td>
+      <td>
+        <button (click)="openDeleteProfessorDialog(professor)" class="deleteButton">Stergeti</button>
+      </td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</div>
+

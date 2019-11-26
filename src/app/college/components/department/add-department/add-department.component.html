@@ -1,0 +1,17 @@
+<h3 mat-dialog-title>Adaugati departament</h3>
+
+<form class="addSection">
+
+  <label>Introduceti numele departamentului: </label>
+  <input type="text" [(ngModel)]="department.departmentName" [ngModelOptions]="{standalone: true}">
+  <div class="errorMessage" *ngIf="departmentError.departmentName != null">
+    {{departmentError.departmentName}}
+  </div>
+
+  <br>
+  <br>
+
+
+  <input type="submit" value="Adaugati" (click)="addDepartment()" class="normalButton">
+
+</form>

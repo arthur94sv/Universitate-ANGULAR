@@ -1,0 +1,52 @@
+<p mat-dialog-title>Adaugati profesor</p>
+
+<form>
+  <label>Introduceti numele profesorului: </label>
+  <input type="text" [(ngModel)]="professor.nume" [ngModelOptions]="{standalone: true}">
+  <div class="errorMessage" *ngIf="professorError.nume != null">
+    {{professorError.nume}}
+  </div>
+
+
+  <br>
+  <br>
+  <label>Introduceti prenumele profesorului: </label>
+  <input type="text" [(ngModel)]="professor.prenume" [ngModelOptions]="{standalone: true}">
+  <div class="errorMessage" *ngIf="professorError.prenume != null">
+    {{professorError.prenume}}
+  </div>
+
+  <br>
+  <br>
+  <label>Introduceti email-ul profesorului: </label>
+  <input type="text" [(ngModel)]="professor.email" [ngModelOptions]="{standalone: true}">
+  <div class="errorMessage" *ngIf="professorError.email != null">
+    {{professorError.email}}
+  </div>
+
+  <br>
+  <br>
+
+  <label>Selectati gradul profesorului: </label>
+  <select [(ngModel)]="professor.grad" [ngModelOptions]="{standalone: true}">
+    <option *ngFor="let gradPrf of listOfGrads" [ngValue]="gradPrf">{{gradPrf.grad}}</option>
+  </select>
+  <div class="errorMessage" *ngIf="professorError.grad != null">
+    {{professorError.grad}}
+  </div>
+
+  <br>
+  <br>
+
+  <label>Selectati departamentul profesorului: </label>
+  <select [(ngModel)]="departmentOfProfessor" [ngModelOptions]="{standalone: true}">
+    <option *ngFor="let dep of listOfDepartments" [ngValue]="dep">{{dep.departmentName}}</option>
+  </select>
+
+  <br>
+  <br>
+
+  <button (click)="addProfessor()" class="normalButton">Adaugati</button>
+
+
+</form>

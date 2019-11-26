@@ -1,0 +1,28 @@
+<form>
+
+  <label>Actualizati numele facultatii: </label>
+  <input type="text" [(ngModel)]="college.nume" [ngModelOptions]="{standalone: true}">
+
+  <br>
+  <br>
+
+
+  <label>Actualziati strada: </label>
+  <input type="text" [(ngModel)]="college.strada" [ngModelOptions]="{standalone: true}">
+  <br>
+  <br>
+
+
+  <label>Actualziati numarul strazii: </label>
+  <input type="number" [(ngModel)]="college.nr" [ngModelOptions]="{standalone: true}">
+  <br>
+  <br>
+
+
+  <label>Actualziati telefon: </label>
+  <input type="text" [(ngModel)]="college.telefon" [ngModelOptions]="{standalone: true}">
+  <br>
+  <br>
+
+  <input type="submit" value="Actualizati" (click)="updateCollegeButton()" class="normalButton">
+</form>

@@ -1,0 +1,43 @@
+<p mat-dialog-title>Adaugati promotie</p>
+
+<form>
+  <label>Introduceti anul de inceput: </label>
+  <input type="number" [(ngModel)]="promotion.startYear" [ngModelOptions]="{standalone: true}">
+  <div class="errorMessage" *ngIf="promotionError.startYear != null">
+    {{promotionError.startYear}}
+  </div>
+
+  <br>
+  <br>
+
+  <label>Introduceti anul de sfarsit: </label>
+  <input type="number" [(ngModel)]="promotion.endYear" [ngModelOptions]="{standalone: true}">
+  <div class="errorMessage" *ngIf="promotionError.endYear != null">
+    {{promotionError.endYear}}
+  </div>
+
+  <br>
+  <br>
+
+  <label>Introduceti nr. locuri buget: </label>
+  <input type="number" [(ngModel)]="promotion.nrLocuriBuget" [ngModelOptions]="{standalone: true}">
+  <div class="errorMessage" *ngIf="promotionError.nrLocuriBuget != null">
+    {{promotionError.nrLocuriBuget}}
+  </div>
+
+  <br>
+  <br>
+
+  <label>Introduceti nr. locuri taxa: </label>
+  <input type="number" [(ngModel)]="promotion.nrLocuriTaxa" [ngModelOptions]="{standalone: true}">
+  <div class="errorMessage" *ngIf="promotionError.nrLocuriTaxa != null">
+    {{promotionError.nrLocuriTaxa}}
+  </div>
+
+  <br>
+  <br>
+
+  <button (click)="addPromotionToEducOffer()" class="normalButton">Adaugati</button>
+
+
+</form>

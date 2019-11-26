@@ -1,0 +1,24 @@
+<button (click)="getStudents()" class="normalButton">Afisati toti studenti pe promotie</button>
+<br>
+<br>
+<div *ngIf="displayAllStudents === true">
+  <table>
+    <tr>
+      <th>Student Id</th>
+      <th>Nume</th>
+      <th>Prenume</th>
+      <th>Email</th>
+      <th>Operatie</th>
+    </tr>
+    <tr *ngFor="let student of listOfStudents">
+      <td>{{student.id}}</td>
+      <td>{{student.nume}}</td>
+      <td>{{student.prenume}}</td>
+      <td>{{student.email}}</td>
+      <td>
+        <button (click)="openDeleteDialogStudent(student)" class="deleteButton">Stergeti</button>
+      </td>
+    </tr>
+  </table>
+
+</div>

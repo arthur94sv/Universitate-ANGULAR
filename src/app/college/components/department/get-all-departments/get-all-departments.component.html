@@ -1,0 +1,23 @@
+<button (click)="getAllDepartments()" class="normalButton">Afisati departamente</button>
+<br>
+<br>
+
+
+<div *ngIf="displayListOfDepartments === true">
+  <button (click)="closeDisplayListOfDepartments()" class="closeButton">X</button>
+  <table>
+    <tr>
+      <th>Nume departament</th>
+      <th colspan="2">Operatii</th>
+    </tr>
+    <tr *ngFor="let departmentItr of listOfDepartments">
+      <td>{{departmentItr.departmentName}}</td>
+      <td>
+        <button (click)="openUpdateDepartmentDialog(departmentItr)" class="normalButton">Actualizati</button>
+      </td>
+      <td>
+        <button (click)="openDeleteDepartmentDialog(departmentItr)" class="deleteButton">Stergeti</button>
+      </td>
+    </tr>
+  </table>
+</div>

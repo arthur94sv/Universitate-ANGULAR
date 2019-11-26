@@ -1,0 +1,37 @@
+<p>Actualizati profesor</p>
+
+
+<br>
+<br>
+
+
+<label>Actualizati numele profesorului: </label>
+<input type="text" [(ngModel)]="professor.nume">
+
+
+<br>
+<br>
+
+<label>Actualizati prenumele profesorului: </label>
+<input type="text" [(ngModel)]="professor.prenume">
+
+
+<br>
+<br>
+
+<label>Actualizati email-ul profesorului: </label>
+<input type="text" [(ngModel)]="professor.email" [ngModelOptions]="{standalone: true}">
+
+
+<br>
+<br>
+
+<label>Actualizati gradul profesorului: </label>
+<select [(ngModel)]="professor.grad" [ngModelOptions]="{standalone: true}">
+  <option *ngFor="let gradPrf of listOfGrads" [ngValue]="gradPrf">{{gradPrf.grad}}</option>
+</select>
+
+<br>
+<br>
+
+<button (click)="updateProfessor()" class="normalButton">Actualizati</button>

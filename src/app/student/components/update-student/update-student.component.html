@@ -1,0 +1,21 @@
+<h3 mat-dialog-title>Actualizati student</h3>
+
+<label>Actualizati numele studentului: </label>
+<input type="text" [(ngModel)]="student.nume">
+
+<br>
+<br>
+
+<label>Actualizati prenumele studentului: </label>
+<input type="text" [(ngModel)]="student.prenume">
+
+<br>
+<br>
+
+<label>Actualizati adresa de email a studentului: </label>
+<input type="text" [(ngModel)]="student.email">
+
+<br>
+<br>
+
+<button (click)="updateStudentButton()" class="normalButton">Actualizati</button>

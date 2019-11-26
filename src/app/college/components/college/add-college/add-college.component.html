@@ -1,0 +1,35 @@
+<h3 mat-dialog-title>Adaugati facultate</h3>
+
+<form>
+
+  <label>Introduceti numele facultatii: </label>
+  <input type="text" [(ngModel)]="college.nume" [ngModelOptions]="{standalone: true}">
+  <div *ngIf="collegeError.nume != null" class="errorMessage">
+    {{collegeError.nume}}
+  </div>
+  <br>
+  <br>
+
+
+  <label>Introduceti strada: </label>
+  <input type="text" [(ngModel)]="college.strada" [ngModelOptions]="{standalone: true}">
+  <br>
+  <br>
+
+
+  <label>Introduceti numarul strazii: </label>
+  <input type="number" [(ngModel)]="college.nr" [ngModelOptions]="{standalone: true}">
+  <br>
+  <br>
+
+
+  <label>Introduceti telefon: </label>
+  <input type="text" [(ngModel)]="college.telefon" [ngModelOptions]="{standalone: true}">
+  <br>
+  <br>
+
+  <input type="submit" value="Adaugati" (click)="addCollege()" class="normalButton">
+
+</form>
+
+

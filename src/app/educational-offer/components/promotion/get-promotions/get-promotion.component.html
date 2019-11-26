@@ -1,0 +1,29 @@
+<button (click)="getPromotions()" class="normalButton">Afisati promotii</button>
+
+<br>
+<br>
+
+<div *ngIf="displayListOfPromotions === true">
+
+  <br>
+  <br>
+
+  <button (click)="closeDisplayListOfPromotions()" class="closeButton">X</button>
+
+  <table>
+    <tr>
+      <th>An inceput</th>
+      <th>An sfarsit</th>
+      <th>Nr. locuri buget</th>
+      <th>Nr. locuri taxa</th>
+    </tr>
+    <tr *ngFor="let promotion of listOfPromotions">
+      <td>{{promotion.startYear}}</td>
+      <td>{{promotion.endYear}}</td>
+      <td>{{promotion.nrLocuriBuget}}</td>
+      <td>{{promotion.nrLocuriTaxa}}</td>
+    </tr>
+  </table>
+
+
+</div>

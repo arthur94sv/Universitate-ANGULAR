@@ -1,1 +1,67 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+table, th, td {
+  padding: 10px;
+  border: 1px solid grey;
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+.closeButton {
+  background-color: red;
+  color: white;
+  float: right;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.normalButton {
+  color: #660000;
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.dependencyButton {
+  color: white;
+  font-weight: bold;
+  font-size: 17px;
+  background-color: darkblue;
+}
+
+.deleteButton {
+  background-color: red;
+  color: white;
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.searchingContainer {
+  padding: 20px;
+
+}
+
+.addButton {
+  border-bottom: 5px solid grey;
+  padding: 10px;
+}
+
+.errorMessage {
+  color: red;
+  font-style: italic;
+}
+
+.addSection {
+  border-bottom: 5px solid grey;
+  padding-bottom: 15px;
+}
+
+

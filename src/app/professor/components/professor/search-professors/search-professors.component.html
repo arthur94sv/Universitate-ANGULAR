@@ -1,0 +1,64 @@
+<div class="searchingContainer">
+  <h3 mat-dialog-title>Cautati profesor</h3>
+
+  <em><p>Cauteara se poate face in 2 feluri:</p>
+    <ul>
+      <li>Dupa numele profesorului</li>
+      <li>Dupa numele si prenumele profesorului</li>
+    </ul>
+  </em>
+
+  <br>
+
+  <label>Introduceti numele: </label>
+  <input [(ngModel)]="nume">
+
+  <br>
+  <br>
+
+  <label>Introduceti prenumele: </label>
+  <input [(ngModel)]="prenume">
+
+  <br>
+  <br>
+
+  <button (click)="searchForProfessor()" class="normalButton">Cautati</button>
+
+
+  <div *ngIf="displayListOfProfessors === true">
+
+    <br>
+
+
+    <button (click)="close()" class="closeButton">X</button>
+
+    <table>
+      <tr>
+        <th>ID profesor</th>
+        <th>Numele</th>
+        <th>Prenume</th>
+        <th>Email</th>
+        <th>Grad</th>
+        <th>Departament</th>
+        <th>Facultate</th>
+        <th>Operatie</th>
+        <th>Cursuri</th>
+      </tr>
+      <tr *ngFor="let professor of listOfProfessors">
+        <td>{{professor.id}}</td>
+        <td><strong><em>{{professor.nume}}</em></strong></td>
+        <td><em>{{professor.prenume}}</em></td>
+        <td>{{professor.email}}</td>
+        <td><em>{{professor.grad}}</em></td>
+        <td><em>{{professor.department}}</em></td>
+        <td>{{professor.college}}</td>
+        <td>
+          <button (click)="openUpdateProfessorDialog(professor)" class="normalButton">Actualizati</button>
+        </td>
+        <td>
+          <button (click)="openRootCoursDialog(professor)" class="dependencyButton">Cursuri</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

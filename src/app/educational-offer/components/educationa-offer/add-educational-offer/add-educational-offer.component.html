@@ -1,0 +1,33 @@
+<form>
+  <label>Introduceti <em>numele</em> programului de studiu: </label>
+  <input type="text" [(ngModel)]="educationalOffer.name" [ngModelOptions]="{standalone: true}">
+  <div class="errorMessage" *ngIf="educationalOfferError.name != null">
+    {{educationalOfferError.name}}
+  </div>
+
+  <br>
+  <br>
+
+  <label>Selectati <em>facultatea</em> : </label>
+  <select [(ngModel)]="college" [ngModelOptions]="{standalone: true}">
+    <option *ngFor=" let collegeIt of listOfColleges" [ngValue]="collegeIt">{{collegeIt.nume}}</option>
+  </select>
+
+
+
+  <br>
+  <br>
+
+  <label> Selectati <em>ciclul de studii</em>: </label>
+  <select [(ngModel)]="educationalOffer.educationLevel" [ngModelOptions]="{standalone: true}">
+    <option *ngFor="let education of educationLevel" [ngValue]="education">{{education.educationLevel}}</option>
+  </select>
+  <div class="errorMessage" *ngIf="educationalOfferError.educationLevel != null">
+    {{educationalOfferError.educationLevel}}
+  </div>
+
+  <br>
+  <br>
+
+  <button (click)="addEducOffer()" class="normalButton">Adaugati</button>
+</form>

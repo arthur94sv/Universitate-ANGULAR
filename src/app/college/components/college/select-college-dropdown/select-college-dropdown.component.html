@@ -1,0 +1,49 @@
+<label mat-dialog-title>Selectati facultatea : </label>
+
+<select [(ngModel)]="college">
+  <option *ngFor="let collegeIt of listOfCollegesDTO" [ngValue]="collegeIt">{{collegeIt.nume}}</option>
+</select>
+
+<button (click)="displaySelectedCollege()" class="normalButton">Afisati</button>
+
+
+<br>
+<br>
+
+
+<div *ngIf="displayCollege === true">
+  <button (click)="close()" class="closeButton">X</button>
+  <table>
+    <tr>
+      <th>ID facultate</th>
+      <th>Numele facultatii</th>
+      <th>Strada</th>
+      <th>Nr.</th>
+      <th>Telefon</th>
+      <th colspan="2">Operatii</th>
+      <th>Departament</th>
+      <th>Profesori</th>
+    </tr>
+    <tr>
+      <td>{{college.id}}</td>
+      <td><strong><em>{{college.nume}}</em></strong></td>
+      <td>{{college.strada}}</td>
+      <td>{{college.nr}}</td>
+      <td>{{college.telefon}}</td>
+      <td>
+        <button (click)="openUpdateCollegeDialog()" class="normalButton">Actualizati</button>
+      </td>
+      <td>
+        <button (click)="openDeleteCollegeDialog()" class="deleteButton">Stergeti</button>
+      </td>
+      <td>
+        <button (click)="openRootDepartmentsDialog()" class="dependencyButton">Departament</button>
+      </td>
+      <td>
+        <button (click)="openRootProfessorsDialog(college)" class="dependencyButton">Profesori</button>
+      </td>
+
+    </tr>
+  </table>
+
+</div>
