@@ -1,8 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {CollegeError} from '../errors/CollegeError';
 import {College} from '../model/College';
-
 
 
 @Injectable({
@@ -18,11 +16,11 @@ export class CollegeService {
   }
 
   public addCollege(college: College) {
-    return this.http.post<CollegeError>('http://localhost:8081/colleges', college);
+    return this.http.post('http://localhost:8081/colleges', college);
   }
 
   public updateCollege(college: College) {
-        return this.http.put<CollegeError>('http://localhost:8081/colleges/' + college.id, college);
+    return this.http.put('http://localhost:8081/colleges/' + college.id, college);
   }
 
   public deleteCollege(college: College) {

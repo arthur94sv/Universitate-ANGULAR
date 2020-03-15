@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {PostProfessorForCollege} from '../../college/model/professor/PostProfessorForCollege';
-import {ProfessorError} from '../../college/errors/ProfessorError';
 import {College} from '../../college/model/College';
 import {GetProfessorForCollege} from '../../college/model/professor/GetProfessorForCollege';
 import {Department} from '../../college/model/Department';
@@ -20,7 +19,7 @@ export class ProfessorService {
   }
 
   public addProfessorToDepartment(department: Department, professor: PostProfessorForCollege) {
-    return this.http.post<ProfessorError>('http://localhost:8081/departments/' + department.id + '/professors', professor);
+    return this.http.post('http://localhost:8081/departments/' + department.id + '/professors', professor);
   }
 
   public deleteProfessor(professor: GetProfessorForCollege) {

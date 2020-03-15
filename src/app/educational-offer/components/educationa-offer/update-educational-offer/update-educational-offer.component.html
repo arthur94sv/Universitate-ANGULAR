@@ -1,5 +1,17 @@
-<label>Actualizati numele : </label>
-<input [(ngModel)]="educationalOffer.name">
-<br>
-<br>
-<button (click)="updateEducationalOfferButton()" class="normalButton">Actualizati</button>
+<h3 mat-dialog-title>Actualizati oferta educationala</h3>
+
+<form #updateEducOffer="ngForm" (ngSubmit)="updateEducationalOfferButton(); updateEducOffer.resetForm()">
+
+  <label>Actualizati numele : </label>
+  <input [(ngModel)]="educationalOffer.name" name="nume"
+         required
+         #nume="ngModel">
+  <br>
+  <small *ngIf="nume.invalid && nume.dirty" class="errorMessage">Numele este obligatoriu</small>
+  <br>
+
+  <button type="submit" class="normalButton" [disabled]="updateEducOffer.invalid">Actualizati</button>
+
+
+</form>
+

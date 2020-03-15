@@ -1,13 +1,18 @@
 <h3 mat-dialog-title>Adaugati curs</h3>
 
+<form #addCursForm="ngForm" (ngSubmit)="addCourse(); addCursForm.resetForm()">
 
-<label>Introduceti numele cursului: </label>
-<input type="text" [(ngModel)]="curs.name">
-<div class="errorMessage" *ngIf="cursError.name != null">
-  {{cursError.name}}
-</div>
+  <label>Introduceti numele cursului: </label>
+  <input type="text" [(ngModel)]="curs.name" name="numeCurs"
+         required
+         #cursName="ngModel">
+  <br>
+  <small *ngIf="cursName.invalid && cursName.touched" class="errorMessage">Numele este obligatoriu</small>
 
-<br>
-<br>
 
-<button (click)="addCourse()" class="normalButton">Adaugati</button>
+  <br>
+  <br>
+
+  <button type="submit" class="normalButton" [disabled]="addCursForm.invalid">Adaugati</button>
+
+</form>

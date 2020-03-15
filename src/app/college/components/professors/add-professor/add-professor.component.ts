@@ -6,7 +6,6 @@ import {DepartmentService} from '../../../services/department.service';
 import {Department} from '../../../model/Department';
 import {Subscription} from 'rxjs';
 import {Grad} from '../../../model/Grad';
-import {ProfessorError} from '../../../errors/ProfessorError';
 import {College} from '../../../model/College';
 
 @Component({
@@ -30,11 +29,9 @@ export class AddProfessorComponent implements OnInit, OnDestroy {
   private departmentsSubscription: Subscription;
   private professorSubscription: Subscription;
 
-  private professorError: ProfessorError;
 
   constructor(private professorService: ProfessorService, private departmentService: DepartmentService) {
     this.professor = new PostProfessorForCollege();
-    this.professorError = new ProfessorError();
     this.departmentOfProfessor = new Department();
   }
 
@@ -52,13 +49,11 @@ export class AddProfessorComponent implements OnInit, OnDestroy {
   }
 
   addProfessor() {
-    this.professorSubscription = this.professorService.addProfessorToDepartment(this.departmentOfProfessor, this.professor)
-      .subscribe(response => this.professorError = response);
-    this.clearProfessorForm();
+    this.professorSubscription = this.professorService
+      .addProfessorToDepartment(this.departmentOfProfessor, this.professor)
+      .subscribe();
+
   }
 
-  clearProfessorForm() {
-    this.professor = new PostProfessorForCollege();
-  }
 
 }

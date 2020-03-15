@@ -3,7 +3,6 @@ import {GetProfessor} from '../../../model/GetProfessor';
 import {PostPutCurs} from '../../../model/PostPutCurs';
 import {Subscription} from 'rxjs';
 import {CoursService} from '../../../services/cours.service';
-import {CursError} from '../../../errors/CursError';
 
 @Component({
   selector: 'app-add-cours',
@@ -15,14 +14,12 @@ export class AddCoursComponent implements OnInit, OnDestroy {
   private curs: PostPutCurs;
   private x: Subscription;
 
-  private cursError: CursError;
 
   constructor(private cursService: CoursService) {
-    this.curs = new PostPutCurs();
-    this.cursError = new CursError();
   }
 
   ngOnInit() {
+    this.curs = new PostPutCurs();
   }
 
   ngOnDestroy() {
@@ -32,7 +29,8 @@ export class AddCoursComponent implements OnInit, OnDestroy {
   }
 
   addCourse() {
-    this.x = this.cursService.addCourse(this.professor, this.curs).subscribe(response => this.cursError = response);
-    this.curs = new PostPutCurs();
+    this.x = this.cursService.addCourse(this.professor, this.curs)
+      .subscribe();
+
   }
 }

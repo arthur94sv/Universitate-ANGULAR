@@ -6,7 +6,6 @@ import {College} from '../../college/model/College';
 import {EducationLevel} from '../../educational-offer/model/EducationLevel';
 import {GetEducationalOffer} from '../../educational-offer/model/GetEducationalOffer';
 import {PromotionForEducOffer} from '../../educational-offer/model/PromotionForEducOffer';
-import {PromotionError} from '../../educational-offer/errors/PromotionError';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +16,7 @@ export class PromotionService {
   }
 
   public addPromotion(educationOffer: GetEducationalOffer, promotion: PromotionForEducOffer) {
-    return this.http.post<PromotionError>('http://localhost:8081/educationalOffers/' + educationOffer.id + '/promotions', promotion);
+    return this.http.post('http://localhost:8081/educationalOffers/' + educationOffer.id + '/promotions', promotion);
   }
 
   public getPromotionForEducOffer(educationOffer: GetEducationalOffer) {

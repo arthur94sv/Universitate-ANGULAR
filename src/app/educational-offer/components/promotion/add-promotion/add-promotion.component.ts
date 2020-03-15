@@ -5,7 +5,7 @@ import {PromotionService} from '../../../../promotion/services/promotion.service
 import {Subscription} from 'rxjs';
 import {GetEducationalOffer} from '../../../model/GetEducationalOffer';
 import {PromotionForEducOffer} from '../../../model/PromotionForEducOffer';
-import {PromotionError} from '../../../errors/PromotionError';
+
 
 @Component({
   selector: 'app-add-promotion',
@@ -17,11 +17,8 @@ export class AddPromotionComponent implements OnInit, OnDestroy {
   private promotion: PromotionForEducOffer;
   private x: Subscription;
 
-  private promotionError: PromotionError;
-
   constructor(private promotionService: PromotionService) {
     this.promotion = new PromotionForEducOffer();
-    this.promotionError = new PromotionError();
   }
 
   ngOnInit() {
@@ -34,7 +31,7 @@ export class AddPromotionComponent implements OnInit, OnDestroy {
   }
 
   addPromotionToEducOffer() {
-    this.x = this.promotionService.addPromotion(this.educationalOffer, this.promotion).subscribe(response => this.promotionError = response);
+    this.x = this.promotionService.addPromotion(this.educationalOffer, this.promotion).subscribe();
     this.clearPromotionForm();
   }
 

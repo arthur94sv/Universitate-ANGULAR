@@ -1,43 +1,51 @@
 <p mat-dialog-title>Adaugati promotie</p>
 
-<form>
+<form #addPromotionForm="ngForm" (ngSubmit)="addPromotionToEducOffer(); addPromotionForm.resetForm()">
   <label>Introduceti anul de inceput: </label>
-  <input type="number" [(ngModel)]="promotion.startYear" [ngModelOptions]="{standalone: true}">
-  <div class="errorMessage" *ngIf="promotionError.startYear != null">
-    {{promotionError.startYear}}
-  </div>
-
+  <input type="number" [(ngModel)]="promotion.startYear" name="startYear"
+         required size="4"
+         #startYear="ngModel">
   <br>
+  <small class="errorMessage" *ngIf="startYear.invalid && startYear.touched">Anul de inceput este
+    obligatoriu si trebuie sa fie format din 4 cifre</small>
+
+
   <br>
 
   <label>Introduceti anul de sfarsit: </label>
-  <input type="number" [(ngModel)]="promotion.endYear" [ngModelOptions]="{standalone: true}">
-  <div class="errorMessage" *ngIf="promotionError.endYear != null">
-    {{promotionError.endYear}}
-  </div>
+  <input type="number" [(ngModel)]="promotion.endYear" name="endYear"
+         required size="4"
+         #endYear="ngModel">
+  <br>
+  <small class="errorMessage" *ngIf="endYear.invalid && endYear.touched">Anul de sfarsit este
+    obligatoriu si trebuie sa fie format din 4 cifre</small>
 
   <br>
-  <br>
+
 
   <label>Introduceti nr. locuri buget: </label>
-  <input type="number" [(ngModel)]="promotion.nrLocuriBuget" [ngModelOptions]="{standalone: true}">
-  <div class="errorMessage" *ngIf="promotionError.nrLocuriBuget != null">
-    {{promotionError.nrLocuriBuget}}
-  </div>
+  <input type="number" [(ngModel)]="promotion.nrLocuriBuget" name="buget"
+         required min="1"
+         #buget="ngModel">
+  <br>
+  <small *ngIf="buget.invalid && buget.touched" class="errorMessage">Locurile la buget sunt obligatoriu de introdus</small>
+
 
   <br>
   <br>
 
   <label>Introduceti nr. locuri taxa: </label>
-  <input type="number" [(ngModel)]="promotion.nrLocuriTaxa" [ngModelOptions]="{standalone: true}">
-  <div class="errorMessage" *ngIf="promotionError.nrLocuriTaxa != null">
-    {{promotionError.nrLocuriTaxa}}
-  </div>
+  <input type="number" [(ngModel)]="promotion.nrLocuriTaxa" name="taxa"
+         required min="1"
+         #taxa="ngModel">
+  <br>
+  <small *ngIf="taxa.invalid && taxa.touched" class="errorMessage">Locurile la taxa sunt obligatoriu de introdus</small>
+
 
   <br>
   <br>
 
-  <button (click)="addPromotionToEducOffer()" class="normalButton">Adaugati</button>
+  <button type="submit" [disabled]="addPromotionForm.invalid" class="normalButton">Adaugati</button>
 
 
 </form>

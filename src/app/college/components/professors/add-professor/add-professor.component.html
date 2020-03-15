@@ -1,52 +1,65 @@
-<p mat-dialog-title>Adaugati profesor</p>
+<h3 mat-dialog-title>Adaugati profesor</h3>
 
-<form>
+<form #addProfessorForm="ngForm" (ngSubmit)="addProfessor(); addProfessorForm.resetForm()">
   <label>Introduceti numele profesorului: </label>
-  <input type="text" [(ngModel)]="professor.nume" [ngModelOptions]="{standalone: true}">
-  <div class="errorMessage" *ngIf="professorError.nume != null">
-    {{professorError.nume}}
-  </div>
-
-
+  <input type="text"
+         [(ngModel)]="professor.nume" name="nume profesor"
+         required
+         #numeProfessor="ngModel">
   <br>
+  <small *ngIf="numeProfessor.invalid && numeProfessor.touched" class="errorMessage">Numele profesorului este
+    obligatoriu</small>
+
+
   <br>
   <label>Introduceti prenumele profesorului: </label>
-  <input type="text" [(ngModel)]="professor.prenume" [ngModelOptions]="{standalone: true}">
-  <div class="errorMessage" *ngIf="professorError.prenume != null">
-    {{professorError.prenume}}
-  </div>
+  <input type="text"
+         [(ngModel)]="professor.prenume" name="prenume profesor"
+         required
+         #prenumeProfessor="ngModel">
+  <small *ngIf="prenumeProfessor.invalid && prenumeProfessor.touched" class="errorMessage">Prenumele profesorului este
+    obligatoriu</small>
 
   <br>
   <br>
+
   <label>Introduceti email-ul profesorului: </label>
-  <input type="text" [(ngModel)]="professor.email" [ngModelOptions]="{standalone: true}">
-  <div class="errorMessage" *ngIf="professorError.email != null">
-    {{professorError.email}}
-  </div>
+  <input type="text"
+         [(ngModel)]="professor.email" name="email"
+         email
+         #email="ngModel">
+  <br>
+  <small *ngIf="email.invalid" class="errorMessage">Adresa de email nu este valida</small>
+
 
   <br>
-  <br>
+
 
   <label>Selectati gradul profesorului: </label>
-  <select [(ngModel)]="professor.grad" [ngModelOptions]="{standalone: true}">
+  <select [(ngModel)]="professor.grad" name="grad"
+          required
+          #grad="ngModel">
     <option *ngFor="let gradPrf of listOfGrads" [ngValue]="gradPrf">{{gradPrf.grad}}</option>
   </select>
-  <div class="errorMessage" *ngIf="professorError.grad != null">
-    {{professorError.grad}}
-  </div>
-
   <br>
+  <small *ngIf="grad.invalid && grad.touched" class="errorMessage">Gradul este obligatoriu</small>
+
+
   <br>
 
   <label>Selectati departamentul profesorului: </label>
-  <select [(ngModel)]="departmentOfProfessor" [ngModelOptions]="{standalone: true}">
+  <select [(ngModel)]="departmentOfProfessor" name="departament"
+           required
+           #department="ngModel">
     <option *ngFor="let dep of listOfDepartments" [ngValue]="dep">{{dep.departmentName}}</option>
   </select>
+  <br>
+  <small *ngIf="department.invalid && department.touched" class="errorMessage">Departamentul este obligatoriu</small>
 
   <br>
   <br>
 
-  <button (click)="addProfessor()" class="normalButton">Adaugati</button>
+  <button type="submit" class="normalButton">Adaugati</button>
 
 
 </form>

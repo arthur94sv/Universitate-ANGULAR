@@ -3,8 +3,6 @@ import {HttpClient} from '@angular/common/http';
 import {GetProfessor} from '../model/GetProfessor';
 import {PostPutCurs} from '../model/PostPutCurs';
 import {GetCurs} from '../model/GetCurs';
-import {CursError} from '../errors/CursError';
-
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +13,7 @@ export class CoursService {
   }
 
   public addCourse(professor: GetProfessor, cours: PostPutCurs) {
-    return this.http.post<CursError>('http://localhost:8081/professors/' + professor.id + '/courses', cours);
+    return this.http.post('http://localhost:8081/professors/' + professor.id + '/courses', cours);
   }
 
   public getCoursesForProfessor(professor: GetProfessor) {

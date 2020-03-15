@@ -1,9 +1,20 @@
 <h3 mat-dialog-title>Actualizati curs</h3>
 
-<label>Actualizati numele cursului: </label>
-<input type="text" [(ngModel)]="course.name">
+<form #updateCursForm="ngForm" (ngSubmit)="updateCurs(); updateCursForm.resetForm()">
 
-<br>
-<br>
+  <label>Actualizati numele cursului: </label>
+  <input type="text" [(ngModel)]="course.name" name="nume"
+         required
+         #numeCurs="ngModel">
+  <br>
+  <small *ngIf="numeCurs.invalid && numeCurs.dirty" class="errorMessage">Numele este obligatoriu</small>
 
-<button (click)="updateCurs()" class="normalButton">Actualizati</button>
+  <br>
+  <br>
+
+  <button type="submit" [disabled]="updateCursForm.invalid" class="normalButton">Actualizati</button>
+
+</form>
+
+
+

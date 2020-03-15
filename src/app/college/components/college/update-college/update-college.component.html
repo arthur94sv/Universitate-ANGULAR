@@ -1,9 +1,17 @@
-<form>
+<h3 mat-dialog-title>Actualizati facultatea</h3>
+
+<form #updateCollegeForm="ngForm" (ngSubmit)="updateCollegeButton(); updateCollegeForm.resetForm()">
 
   <label>Actualizati numele facultatii: </label>
-  <input type="text" [(ngModel)]="college.nume" [ngModelOptions]="{standalone: true}">
-
+  <input type="text"
+         [(ngModel)]="college.nume" name="nume facultate"
+         required
+         #nameCollege="ngModel">
   <br>
+  <small *ngIf="nameCollege.invalid && nameCollege.dirty" class="errorMessage">Numele facultatii este
+    obligatoriu</small>
+
+
   <br>
 
 
@@ -24,5 +32,5 @@
   <br>
   <br>
 
-  <input type="submit" value="Actualizati" (click)="updateCollegeButton()" class="normalButton">
+  <button type="submit" class="normalButton" [disabled]="updateCollegeForm.invalid">Actualizati facultatea</button>
 </form>

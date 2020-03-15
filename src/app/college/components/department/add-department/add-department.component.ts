@@ -4,7 +4,7 @@ import {Department} from '../../../model/Department';
 import {DepartmentService} from '../../../services/department.service';
 import {Subscription} from 'rxjs';
 import {College} from '../../../model/College';
-import {DepartmentError} from '../../../errors/DepartmentError';
+
 
 @Component({
   selector: 'app-add-department',
@@ -16,11 +16,9 @@ export class AddDepartmentComponent implements OnInit, OnDestroy {
   private department: Department;
   private x: Subscription;
 
-  private departmentError: DepartmentError;
 
   constructor(private departmentService: DepartmentService) {
     this.department = new Department();
-    this.departmentError = new DepartmentError();
   }
 
   ngOnInit() {
@@ -33,8 +31,7 @@ export class AddDepartmentComponent implements OnInit, OnDestroy {
   }
 
   addDepartment() {
-    this.x = this.departmentService.addDepartment(this.college, this.department).subscribe(response => this.departmentError = response);
-    this.department.departmentName = null;
+    this.x = this.departmentService.addDepartment(this.college, this.department).subscribe();
   }
 
 }

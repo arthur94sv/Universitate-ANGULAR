@@ -3,35 +3,55 @@
 
 <br>
 <br>
+<form #updateProfessorForm="ngForm" (ngSubmit)="updateProfessor(); updateProfessorForm.resetForm()">
+
+  <label>Actualizati numele profesorului: </label>
+  <input type="text"
+         [(ngModel)]="professor.nume" name="nume"
+         required
+         #nume="ngModel">
+  <br>
+  <small *ngIf="nume.invalid && nume.dirty" class="errorMessage">Numele este obligatoriu</small>
 
 
-<label>Actualizati numele profesorului: </label>
-<input type="text" [(ngModel)]="professor.nume">
+  <br>
+  <br>
+
+  <label>Actualizati prenumele profesorului: </label>
+  <input type="text"
+         [(ngModel)]="professor.prenume" name="prenume"
+         required
+         #prenume="ngModel">
+  <br>
+  <small *ngIf="prenume.invalid && prenume.dirty" class="errorMessage">Prenumele este obligatoriu</small>
 
 
-<br>
-<br>
+  <br>
+  <br>
 
-<label>Actualizati prenumele profesorului: </label>
-<input type="text" [(ngModel)]="professor.prenume">
-
-
-<br>
-<br>
-
-<label>Actualizati email-ul profesorului: </label>
-<input type="text" [(ngModel)]="professor.email" [ngModelOptions]="{standalone: true}">
+  <label>Actualizati email-ul profesorului: </label>
+  <input type="text"
+         [(ngModel)]="professor.email" name="email"
+         email
+         #email="ngModel">
+  <br>
+  <small *ngIf="email.invalid" class="errorMessage">Format mail invalid</small>
 
 
-<br>
-<br>
+  <br>
+  <br>
 
-<label>Actualizati gradul profesorului: </label>
-<select [(ngModel)]="professor.grad" [ngModelOptions]="{standalone: true}">
-  <option *ngFor="let gradPrf of listOfGrads" [ngValue]="gradPrf">{{gradPrf.grad}}</option>
-</select>
+  <label>Actualizati gradul profesorului: </label>
+  <select [(ngModel)]="professor.grad" name="grad"
+          required
+          #grad="ngModel">
+    <option *ngFor="let gradPrf of listOfGrads" [ngValue]="gradPrf">{{gradPrf.grad}}</option>
+  </select>
+  <br>
+  <small *ngIf="email.invalid && email.touched" class="errorMessage">Gradul este obligatoriu</small>
 
-<br>
-<br>
+  <br>
+  <br>
 
-<button (click)="updateProfessor()" class="normalButton">Actualizati</button>
+  <button type="submit" class="normalButton" [disabled]="updateProfessorForm.invalid">Actualizati</button>
+</form>

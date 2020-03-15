@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 
 import {Department} from '../model/Department';
 import {College} from '../model/College';
-import {DepartmentError} from '../errors/DepartmentError';
+
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,7 @@ export class DepartmentService {
   }
 
   public addDepartment(college: College, department: Department) {
-    return this.http.post<DepartmentError>('http://localhost:8081/colleges/' + college.id + '/departments', department);
+    return this.http.post('http://localhost:8081/colleges/' + college.id + '/departments', department);
   }
 
   public updateDepartment(department: Department) {

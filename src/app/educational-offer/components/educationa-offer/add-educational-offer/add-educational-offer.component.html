@@ -1,33 +1,38 @@
-<form>
+<h3>Adaugati o oferta educationala</h3>
+
+<form #addEducationalOfferForm="ngForm" (ngSubmit)="addEducOffer(); addEducationalOfferForm.resetForm()">
   <label>Introduceti <em>numele</em> programului de studiu: </label>
-  <input type="text" [(ngModel)]="educationalOffer.name" [ngModelOptions]="{standalone: true}">
-  <div class="errorMessage" *ngIf="educationalOfferError.name != null">
-    {{educationalOfferError.name}}
-  </div>
+  <input type="text"
+         [(ngModel)]="educationalOffer.name" name="nume"
+         required
+         #nume="ngModel">
+<br>
+  <small *ngIf="nume.invalid && nume.touched" class="errorMessage">Numele este obligatoriu</small>
+
 
   <br>
-  <br>
+
 
   <label>Selectati <em>facultatea</em> : </label>
-  <select [(ngModel)]="college" [ngModelOptions]="{standalone: true}">
+  <select [(ngModel)]="college" name="facultate">
     <option *ngFor=" let collegeIt of listOfColleges" [ngValue]="collegeIt">{{collegeIt.nume}}</option>
   </select>
-
 
 
   <br>
   <br>
 
   <label> Selectati <em>ciclul de studii</em>: </label>
-  <select [(ngModel)]="educationalOffer.educationLevel" [ngModelOptions]="{standalone: true}">
+  <select [(ngModel)]="educationalOffer.educationLevel" name="ciclu studii"
+          required
+          #educLevel="ngModel">
     <option *ngFor="let education of educationLevel" [ngValue]="education">{{education.educationLevel}}</option>
   </select>
-  <div class="errorMessage" *ngIf="educationalOfferError.educationLevel != null">
-    {{educationalOfferError.educationLevel}}
-  </div>
+  <br>
+  <small *ngIf="educLevel.invalid && educLevel.touched" class="errorMessage">Nivelul educational este obligatoriu</small>
 
   <br>
   <br>
 
-  <button (click)="addEducOffer()" class="normalButton">Adaugati</button>
+  <button type="submit" class="normalButton" [disabled]="addEducationalOfferForm.invalid">Adaugati</button>
 </form>

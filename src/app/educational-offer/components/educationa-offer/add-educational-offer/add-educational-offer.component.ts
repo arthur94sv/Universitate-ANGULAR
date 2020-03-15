@@ -6,7 +6,6 @@ import {College} from '../../../../college/model/College';
 import {EducationLevel} from '../../../model/EducationLevel';
 import {EducationalOfferService} from '../../../services/educational-offer.service';
 import {PostEducationalOffer} from '../../../model/PostEducatinalOffer';
-import {EducationalOfferError} from '../../../errors/EducationalOfferError';
 
 
 @Component({
@@ -28,17 +27,16 @@ export class AddEducationalOfferComponent implements OnInit, OnDestroy {
     {id: 3, educationLevel: 'doctorat'},
   ];
 
-  private educationalOfferError: EducationalOfferError;
-
-
-  constructor(private collegeService: CollegeService, private educationalOfferService: EducationalOfferService) {
+  constructor(private collegeService: CollegeService,
+              private educationalOfferService: EducationalOfferService
+  ) {
     this.educationalOffer = new PostEducationalOffer();
-    this.educationalOfferError = new EducationalOfferError();
     this.college = new College();
   }
 
   ngOnInit() {
-    this.collegeServiceSubscription = this.collegeService.getAllColleges().subscribe(response => this.listOfColleges = response);
+    this.collegeServiceSubscription = this.collegeService.getAllColleges()
+      .subscribe(response => this.listOfColleges = response);
   }
 
   ngOnDestroy() {
@@ -49,15 +47,10 @@ export class AddEducationalOfferComponent implements OnInit, OnDestroy {
   }
 
   addEducOffer() {
-    this.educationalOfferSubscription = this.educationalOfferService.addEducationOffer(this.college, this.educationalOffer)
-      .subscribe(response => {
-        this.educationalOfferError = response;
-      });
-    this.clearEducOfferForm();
-  }
+    this.educationalOfferSubscription = this.educationalOfferService
+      .addEducationOffer(this.college, this.educationalOffer)
+      .subscribe();
 
-  clearEducOfferForm() {
-    this.educationalOffer = new PostEducationalOffer();
   }
 
 
