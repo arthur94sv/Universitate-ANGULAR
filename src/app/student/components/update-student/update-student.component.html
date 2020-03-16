@@ -1,21 +1,40 @@
 <h3 mat-dialog-title>Actualizati student</h3>
 
-<label>Actualizati numele studentului: </label>
-<input type="text" [(ngModel)]="student.nume">
+<form #updateStudentForm="ngForm" (ngSubmit)="updateStudentButton(); updateStudentForm.resetForm()">
 
-<br>
-<br>
 
-<label>Actualizati prenumele studentului: </label>
-<input type="text" [(ngModel)]="student.prenume">
+  <label>Actualizati numele studentului: </label>
+  <input type="text"
+         [(ngModel)]="student.nume" name="nume"
+         required
+         #nume="ngModel">
+  <br>
+  <small *ngIf="nume.invalid && nume.dirty" class="errorMessage">Numele este obligatoriu</small>
 
-<br>
-<br>
+  <br>
+  <br>
 
-<label>Actualizati adresa de email a studentului: </label>
-<input type="text" [(ngModel)]="student.email">
+  <label>Actualizati prenumele studentului: </label>
+  <input type="text"
+         [(ngModel)]="student.prenume" name="prenume"
+         required
+         #prenume="ngModel">
+  <br>
+  <small *ngIf="prenume.invalid && prenume.dirty" class="errorMessage">Prenumele este obligatoriu</small>
 
-<br>
-<br>
+  <br>
+  <br>
 
-<button (click)="updateStudentButton()" class="normalButton">Actualizati</button>
+  <label>Actualizati adresa de email a studentului: </label>
+  <input type="text"
+         [(ngModel)]="student.email" name="email"
+         email
+         #email="ngModel">
+  <br>
+  <small *ngIf="email.invalid && email.dirty" class="errorMessage">Format email invalid</small>
+
+  <br>
+  <br>
+
+  <button type="submit" [disabled]="updateStudentForm.invalid" class="normalButton">Actualizati</button>
+</form>

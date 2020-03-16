@@ -4,7 +4,7 @@ import {Student} from '../model/Student';
 import {Promotion} from '../../promotion/model/Promotion';
 import {StudentForPromotion} from '../../promotion/model/StudentForPromotion';
 import {AddStudentToPromotion} from '../../promotion/model/AddStudentToPromotion';
-import {StudentError} from '../../promotion/errors/StudentError';
+
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +27,7 @@ export class StudentService {
   }
 
   public addStudent(promotion: Promotion, student: AddStudentToPromotion) {
-    return this.http.post<StudentError>('http://localhost:8081/promotions/' + promotion.id + '/students', student);
+    return this.http.post('http://localhost:8081/promotions/' + promotion.id + '/students', student);
   }
 
   public deleteStudentFromPromotion(promotion: Promotion, student: StudentForPromotion) {

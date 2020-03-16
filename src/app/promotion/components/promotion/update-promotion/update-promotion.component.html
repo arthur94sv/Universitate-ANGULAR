@@ -1,19 +1,32 @@
 <p mat-dialog-title>Actualizati promotie</p>
 
-<form>
+<form #updatePromotionForm="ngForm" (ngSubmit)="updatePromotionButton(); updatePromotionForm.resetForm()">
+
   <label>Actualizati nr. locuri buget: </label>
-  <input type="number" [(ngModel)]="promotion.nrLocuriBuget" [ngModelOptions]="{standalone: true}">
+  <input type="number"
+         [(ngModel)]="promotion.nrLocuriBuget" name="buget"
+         required
+         #nrLocuriBuget="ngModel">
+  <br>
+  <small *ngIf="nrLocuriBuget.invalid && nrLocuriBuget.dirty" class="errorMessage">Nr de locuri la buget este
+    obligatoriu</small>
 
   <br>
   <br>
 
   <label>Actualizati nr. locuri taxa: </label>
-  <input type="number" [(ngModel)]="promotion.nrLocuriTaxa" [ngModelOptions]="{standalone: true}">
+  <input type="number"
+         [(ngModel)]="promotion.nrLocuriTaxa" name="taxa"
+         required
+         #nrLocuriTaxa="ngModel">
+  <br>
+  <small *ngIf="nrLocuriTaxa.invalid && nrLocuriTaxa.dirty" class="errorMessage">Nr de locuri la taxa este
+    obligatoriu</small>
 
   <br>
   <br>
 
-  <button (click)="updatePromotionButton()" class="normalButton">Actualizati</button>
+  <button button="submit" class="normalButton" [disabled]="updatePromotionForm.invalid">Actualizati</button>
 
 
 </form>

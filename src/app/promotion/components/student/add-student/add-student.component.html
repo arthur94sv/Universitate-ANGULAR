@@ -1,46 +1,59 @@
-<form>
+<h3>Adaugati sudent</h3>
+
+
+<form #addStudentForm="ngForm" (ngSubmit)="addStudentToPromotion(); addStudentForm.resetForm()">
+
   <label>Introduceti numele studentului: </label>
-  <input type="text" [(ngModel)]="student.nume" [ngModelOptions]="{standalone: true}">
-  <div class="errorMessage" *ngIf="studentError.nume != null">
-    {{studentError.nume}}
-  </div>
+  <input type="text"
+         [(ngModel)]="student.nume" name="nume"
+         required
+         #nume="ngModel">
+  <br>
+  <small *ngIf="nume.invalid && nume.touched" class="errorMessage">Numele este obligatoriu</small>
+
 
   <br>
   <br>
 
   <label>Introduceti prenumele studentului: </label>
-  <input type="text" [(ngModel)]="student.prenume" [ngModelOptions]="{standalone: true}">
-  <div class="errorMessage" *ngIf="studentError.prenume != null">
-    {{studentError.prenume}}
-  </div>
+  <input type="text"
+         [(ngModel)]="student.prenume" name="prenume"
+         required
+         #prenme="ngModel">
+  <br>
+  <small *ngIf="prenme.invalid && prenme.touched" class="errorMessage">Prenumele este obligatoriu</small>
+
 
   <br>
   <br>
 
   <label>Introduceti adresa de email a studentului: </label>
-  <input type="text" [(ngModel)]="student.email" [ngModelOptions]="{standalone: true}">
-  <div class="errorMessage" *ngIf="studentError.email != null">
-    {{studentError.email}}
-  </div>
+  <input type="text"
+         [(ngModel)]="student.email" name="email"
+         email
+         #email="ngModel">
+  <br>
+  <small *ngIf="email.invalid && email.dirty" class="errorMessage">Format email invalid</small>
+
 
   <br>
   <br>
 
   <label>Alegeti repartitia : </label>
-  <select [(ngModel)]="student.repartition" [ngModelOptions]="{standalone: true}">
+  <select [(ngModel)]="student.repartition" name="repartitie"
+          required
+          #repartitie="ngModel">
     <option *ngFor="let repartitionIt of repartitionList"
             [ngValue]="repartitionIt">{{repartitionIt.repartition}}</option>
   </select>
-  <div class="errorMessage" *ngIf="studentError.repartition != null">
-    {{studentError.repartition}}
-  </div>
+  <br>
+  <small *ngIf="repartitie.invalid && repartitie.touched" class="errorMessage">Repartitia este obligatorie</small>
+
 
   <br>
   <br>
 
-  <button (click)="addStudentToPromotion()" class="normalButton">Adaugati</button>
-  <div class="errorMessage">
-    {{error}}
-  </div>
+  <button type="submit" class="normalButton" [disabled]="addStudentForm.invalid">Adaugati</button>
+
 
 </form>
